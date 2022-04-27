@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>frontened</title>
+    <style>
+        #navbar{
+            display: flex;
+            background-color: black;
+            justify-content: space-around;
+            padding: 20px;
+            margin: auto;
+
+        }
+
+        a{
+            color: white;
+            font-size: 30px;
+            text-decoration: none;
+        }
+
+        #container{
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            grid-template-rows: auto;
+            width: 80%;
+            gap: 10px;
+            margin: auto;
+
+        }
+        #container>div{
+            padding: 10px;
+            text-align: center;
+        }
+
+        #container>div>p+img{
+            height: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div id="navbar">
+        <div><a href="navbar.html">NAVBAR</a></div>
+        <div ><a href="backened.html">BACKENED</a></div>
+        <div><a href="frontened.html">FRONTENED</a></div>
+    </div>
+
+    <div id="container"></div>
+    
+</body>
+</html>
+
+<script>
+    var investaArr2 = JSON.parse(localStorage.getItem("investorData"))
+    // console.log(investaArr2)
+
+investaArr2.forEach(function(element){
+    var box = document.createElement("div")
+    
+    var imgTag = document.createElement("img")
+    imgTag.setAttribute("src",element.investorImage)
+
+    var h3tag = document.createElement("h3")
+    h3tag.innerText=element.investorName
+
+    var ptag = document.createElement("p")
+    ptag.innerText=element.investorRole
+
+    var logoImg = document.createElement("img")
+    logoImg.setAttribute("src", element.investorLogo)
+
+
+    box.append(imgTag,h3tag,ptag,logoImg)
+    document.querySelector("#container").append(box)
+
+
+})
+
+</script>

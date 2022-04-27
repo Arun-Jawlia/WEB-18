@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>backened</title>
+    <style>
+        #navbar{
+            display: flex;
+            background-color: black;
+            justify-content: space-around;
+            padding: 20px;
+
+        }
+
+        a{
+            color: white;
+            font-size: 30px;
+            text-decoration: none;
+        }
+
+        form{
+            margin-top: 20px;
+        }
+        input{
+            display: block;
+            width: 60%;
+            margin: auto;
+            margin-top: 20px;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="navbar">
+        <div><a href="navbar.html">NAVBAR</a></div>
+        <div ><a href="backened.html">BACKENED</a></div>
+        <div><a href="frontened.html">FRONTENED</a></div>
+    </div>
+
+
+    <form id="form">
+        <input type="text" placeholder="Enter Image Url" id="image">
+        <input type="text" placeholder="Enter Name" id="name">
+        <input type="text" placeholder="Enter Position" id="role">
+        <input type="text" placeholder="Enter Logo" id="logo">
+        <input type="submit">
+    </form>
+    
+</body>
+</html>
+
+<script>
+    
+    document.querySelector("#form")
+    document.addEventListener("submit", investorFunction)
+
+     
+
+    var investorArr =  JSON.parse(localStorage.getItem("investorData")) || []
+
+    function investorFunction()
+    {
+        event.preventDefault()
+
+        var investorObj={
+            investorImage:document.querySelector("#image").value,
+            investorName:document.querySelector("#name").value,
+            investorRole:document.querySelector("#role").value,
+            investorLogo:document.querySelector("#logo").value,
+        }
+
+        investorArr.push(investorObj)
+        localStorage.setItem("investorData", JSON.stringify(investorArr))
+        
+        document.querySelector("#form").reset()
+        // localStorage.clear()
+
+
+    }
+
+</script>
